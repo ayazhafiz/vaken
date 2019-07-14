@@ -19,7 +19,7 @@ import { fetchUser, query, queryById, toEnum, updateUser, checkIsAuthorized } fr
  */
 export type CustomResolvers<T> = Omit<Resolvers<T>, 'User'> & {
 	User: {
-		__resolveType: (user: UserDbInterface) => 'Hacker' | 'Organizer' | 'Mentor';
+		__resolveType: (user: UserDbInterface) => 'Hacker' | 'Mentor' | 'Organizer' | 'Sponsor';
 	};
 };
 

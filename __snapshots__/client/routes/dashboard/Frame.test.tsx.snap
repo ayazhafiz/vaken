@@ -11,7 +11,7 @@ exports[`Test Frame Frame renders correctly 1`] = `
       className="sc-bdVaJa sc-bwzfXH sc-htpNat sc-bxivhb efNTZh"
     >
       <h1
-        className="sc-jWBwVP gEoWbI"
+        className="sc-brqgnP hfqstP"
         color="#6979f8"
       >
         Dashboard
@@ -173,7 +173,7 @@ exports[`Test Frame Frame renders correctly 1`] = `
       className="sc-bdVaJa sc-bwzfXH sc-ifAKCX kHHPcv"
     >
       <div
-        className="sc-bdVaJa sc-bwzfXH sc-ifAKCX sc-kpOJdX kpxAxA"
+        className="sc-bdVaJa sc-bwzfXH sc-ifAKCX sc-kgoBCf hfnSyW"
         height="min-content"
         width="36rem"
       >
@@ -181,7 +181,7 @@ exports[`Test Frame Frame renders correctly 1`] = `
           className="sc-bdVaJa sc-bwzfXH dgnCwc"
         >
           <h1
-            className="sc-jWBwVP hKGawI"
+            className="sc-brqgnP dmtviw"
             fontSize="1.8rem"
           >
             Your application status is:
@@ -229,7 +229,7 @@ exports[`Test Frame Frame renders correctly 1`] = `
             }
           >
             <button
-              className="sc-gqjmRU sc-eNQAEJ fvHoVz"
+              className="sc-gqjmRU sc-cSHVUG jYhbDb"
             >
               <div
                 className="sc-htoDjs kSfDbb"

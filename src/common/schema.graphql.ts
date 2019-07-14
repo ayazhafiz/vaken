@@ -68,6 +68,11 @@ export default gql`
 		REJECTED
 	}
 
+	enum SponsorStatus {
+		ADDED
+		CREATED
+	}
+
 	enum LoginProvider {
 		GITHUB
 		GOOGLE
@@ -164,6 +169,24 @@ export default gql`
 		size: Int!
 	}
 
+	type Sponsor implements User @entity {
+		id: ID!
+		createdAt: Float!
+		secondaryIds: [ID!]!
+		logins: [Login!]!
+		email: String!
+		firstName: String!
+		preferredName: String!
+		lastName: String!
+		shirtSize: ShirtSize
+		status: SponsorStatus! @column
+		gender: String
+		dietaryRestrictions: [DietaryRestriction!]!
+		userType: UserType!
+		phoneNumber: String
+		permissions: [String]! @column
+	}
+
 	type Organizer implements User @entity {
 		id: ID!
 		createdAt: Float!
@@ -185,6 +208,8 @@ export default gql`
 		me: User # May be used when not logged in.
 		hacker(id: ID!): Hacker!
 		hackers(sortDirection: SortDirection): [Hacker!]!
+		sponsor(id: ID!): Sponsor!
+		sponsors(sortDirection: SortDirection): [Sponsor!]!
 		organizer(id: ID!): Organizer!
 		organizers(sortDirection: SortDirection): [Organizer!]!
 		mentor(id: ID!): Mentor!
@@ -218,12 +243,24 @@ export default gql`
 		status: ApplicationStatus!
 	}
 
+	input createSponsorInput {
+		email: String!
+		name: String!
+	}
+
+	input SponsorStatusInput {
+		email: String!
+		status: SponsorStatus!
+	}
+
 	type Mutation {
+		createSponsor(input: createSponsorInput!): Sponsor!
 		updateMyProfile(input: UserInput!): User!
 		updateProfile(id: ID!, input: UserInput!): User!
 		joinTeam(input: TeamInput!): Hacker!
 		leaveTeam: Hacker!
 		hackerStatus(input: HackerStatusInput!): Hacker!
 		hackerStatuses(input: HackerStatusesInput!): [Hacker!]!
+		sponsorStatus(input: SponsorStatusInput!): Sponsor!
 	}
 `;
