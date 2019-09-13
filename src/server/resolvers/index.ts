@@ -202,6 +202,16 @@ export const resolvers: CustomResolvers<Context> = {
 			if (!ret) throw new AuthenticationError(`hacker not found: ${hacker.email}`);
 			return ret;
 		},
+		sponsorStatus: async (_, { input: { email, status } }, { models }: Context) => {
+			const { ok, value, lastErrorObject: err } = await models.Sponsors.findOneAndUpdate(
+				{ email },
+				{ $set: { status } },
+				{ returnOriginal: false }
+			);
+			if (!ok || err || !value)
+				throw new UserInputError(`user ${email} (${value}) error: ${JSON.stringify(err)}`);
+			return value;
+		},
 		updateMyProfile: async (root, { input }, { models, user }) => {
 			// Enables a user to update their own profile
 			if (!user) throw new AuthenticationError(`cannot update profile: user not logged in`);
@@ -230,6 +240,8 @@ export const resolvers: CustomResolvers<Context> = {
 		mentors: async (root, args, ctx) => ctx.models.Mentors.find().toArray(),
 		organizer: async (root, { id }, ctx) => queryById(id, ctx.models.Organizers),
 		organizers: async (root, args, ctx) => ctx.models.Organizers.find().toArray(),
+		sponsor: async (root, { id }, ctx: Context) => queryById(id, ctx.models.Sponsors),
+		sponsors: async (root, args, ctx: Context) => ctx.models.Sponsors.find().toArray(),
 		team: async (root, { id }, ctx) => queryById(id, ctx.models.Teams),
 		teams: async (root, args, ctx) => ctx.models.Teams.find().toArray(),
 	},
